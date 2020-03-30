@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>创建自己的独立博客（三）</title>
+    <url>/2020/03/28/Create-Your-Own-Blog-03/</url>
+    <content><![CDATA[<p>通过前面两篇文章的介绍，我们可以用Hexo在创建了一个本地博客并且撰写一些精彩的博文。但是这些博文只存在于自己的电脑上，只能从本机上才能看到。如何才能把自己的博客发布到互联网上与人分享呢？我们可以把Hexo生成的静态网页托管到GitHub上，并通过GitHub来分享自己的博客。</p>
+<h2 id="注册GitHub帐号"><a href="#注册GitHub帐号" class="headerlink" title="注册GitHub帐号"></a>注册GitHub帐号</h2><ol>
+<li><p>打开网页浏览器，在地址栏里输入 <a href="https://github.com/new" target="_blank" rel="noopener">https://github.com/new</a> ，然后点击“Create an account”：</p>
+<p> <img src="/images/2020-03-28-Create-Your-Own-Blog-03/21CreateGithubAccount_A.png" alt="21CreateGithubAccount_A"></p>
+ <a id="more"></a>
+</li>
+<li><p>然后填入自己的信息，包括自己选择的用户名（Username）、注册邮箱（Email address）和密码（Password）。解一个防注册机器人的谜题，然后点击“Select a plan”：</p>
+</li>
+</ol>
+<p><img src="/images/2020-03-28-Create-Your-Own-Blog-03/21CreateGithubAccount_B.png" alt="21CreateGithubAccount_B"></p>
+<ol start="3">
+<li>然后选择自己的plan，当然是选择free的咯～</li>
+</ol>
+<p><img src="/images/2020-03-28-Create-Your-Own-Blog-03/21CreateGithubAccount_C.png" alt="21CreateGithubAccount_C"></p>
+<ol start="4">
+<li>选择free的plan之后Github会往我们的注册信箱发一封验证电邮。登录注册使用的信箱，点击GitHub发给我们的验证电邮里面的链接，我们的注册邮箱就完成了验证。接下来我们就可以创建一个GitHub仓库（repository）了。</li>
+</ol>
+<h2 id="创建GitHub仓库"><a href="#创建GitHub仓库" class="headerlink" title="创建GitHub仓库"></a>创建GitHub仓库</h2><ol>
+<li><p>登录进我们刚刚建立的GitHub帐号，GitHub会要求我们新建一个仓库（repository）。选择一个仓库名字 （repository name），然后点击 “Create repository”。这里建议用 “username.github.io” 做为仓库名，这样后面就可以用 <a href="https://username.github.io" target="_blank" rel="noopener">https://username.github.io</a> 这个地址来访问我们的博客。</p>
+<p> <img src="/images/2020-03-28-Create-Your-Own-Blog-03/21CreateGithubAccount_D.png" alt="21CreateGithubAccount_D"></p>
+<p> 这样我们的第一个GitHub仓库就建成了。记住这个仓库的地址是：<a href="https://github.com/eternj/eternj.github.io" target="_blank" rel="noopener">https://github.com/eternj/eternj.github.io</a> ，我们发布Hexo生成的静态网页时需要用到这个地址。另外需要说明的是上面这个地址只是在发布静态网页时用到，后面要访问发布后的博客时则用这个地址 <a href="https://eternj.github.io" target="_blank" rel="noopener">https://eternj.github.io</a> 。</p>
+</li>
+</ol>
+<h2 id="发布Hexo静态网页到GitHub"><a href="#发布Hexo静态网页到GitHub" class="headerlink" title="发布Hexo静态网页到GitHub"></a>发布Hexo静态网页到GitHub</h2><p>现在就是我们把Hexo建立的本地博客发送到GitHub的激动时刻了。</p>
+<ol>
+<li><p>我们将使用git把本地博客内容同步到刚建立的GitHub仓库去。如果这是我们第一次使用git，我们需要在 Command Prompt 里面输入下面的命令来配置我们的git邮箱和名字（相当于告诉git我们的身份）：</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global user.email "your-email-address"</span><br><span class="line">git config --global user.name "your-name"</span><br></pre></td></tr></table></figure>
+
+<p> 注意上面命令里的 “your-email-address” 和 “your-name” 需要分别替换成我们注册GitHub帐号时用的注册邮箱和我们自己的名字（真名或者网名都可以）。</p>
+</li>
+<li><p>安装Hexo的git布署器。这一步不能忽略，不然下面的布署命令会出错。在 Command Prompt 里面输入以下命令完成安装：</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改本地博客的_config.xml文件，把Deployment段修改成这样：</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/eternj/eternj.github.io</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后在Command Prompt里面执行Hexo的布署命令：</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p> 在布署的时候会弹出一个对话框，让我们输入自己的GitHub的用户名和密码。这是一个一次性的身份验证过程，我们输入的用户名和密码会被保存在本机上，以后布署的时候就不需要再输入了。</p>
+<p> 布署命令的输出结果如下图所示：</p>
+<p> <img src="/images/2020-03-28-Create-Your-Own-Blog-03/22Deploy_A.png" alt="22Deploy_A"></p>
+<p> <img src="/images/2020-03-28-Create-Your-Own-Blog-03/22Deploy_B.png" alt="22Deploy_B"></p>
+<p> 至此，我们的本地博客网站就被发布到GitHub上了。</p>
+</li>
+</ol>
+<h2 id="访问发布后的博客"><a href="#访问发布后的博客" class="headerlink" title="访问发布后的博客"></a>访问发布后的博客</h2><p>打开网页浏览器，输入我们的GitHub仓库地址（示例里面的地址是 <a href="https://eternj.github.io" target="_blank" rel="noopener">https://eternj.github.io</a> ），然后按回车，发布后的博客就展现在我们眼前了 -:)</p>
+<p><img src="/images/2020-03-28-Create-Your-Own-Blog-03/22Deploy_C.png" alt="22Deploy_C"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文叙述了如何把Hexo生成的本地博客发布到GitHub上和大家分享。至此，这个系列的三篇文章都写完了。相信大家在读过这三篇文章后能按部就班地创建和发布自己的博客了。</p>
+]]></content>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Blog</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决用Typora编辑Hexo帖子时图片的链接问题</title>
+    <url>/2020/03/27/Solve-Typora-Hexo-Image-Problem/</url>
+    <content><![CDATA[<p><a href="https://typora.io" target="_blank" rel="noopener">Typora</a>是一个界面简洁但是功能非常强大的Markdown语言编辑器。我们可以用Typora来方便地编辑Hexo里生成的博文，但是我们需要在Typora和Hexo里面修改一些关于图片的设置，这样用Typora编辑过的博文经过Hexo发布之后不会出现因图片路径错误而看不到图片的问题。</p>
+<h2 id="建立一个images文件夹"><a href="#建立一个images文件夹" class="headerlink" title="建立一个images文件夹"></a>建立一个images文件夹</h2><p>我们的目标是用一个images文件夹来统一管理我们博客网站的所有图片。第一步我们需要在E:\Blogs\Hexo_Git_Nodejs\source目录下面新建一个images文件夹，如下图所示：</p>
+<p><img src="/images/2020-03-27-Solve-Typora-Hexo-Image-Problem/11TyporaSettings_A.png" alt="11TyporaSettings_A"></p>
+<p>建立images文件夹之后我们的本地博客目录下的文件夹结构会如下图所示：</p>
+<p><img src="/images/2020-03-27-Solve-Typora-Hexo-Image-Problem/11TyporaSettings_B.png" alt="11TyporaSettings_B"></p>
+<h2 id="Typora里面关于图片的设置"><a href="#Typora里面关于图片的设置" class="headerlink" title="Typora里面关于图片的设置"></a>Typora里面关于图片的设置</h2><p>在用Typora编辑Hexo生成的博文的时候我们经常会在文中插入图片（我一般直接用拖曳的方法把图片从本地的一个文件夹里拖到文章里）。在插入图片的时候我们需要告诉Typora把插入的图片拷贝到前一步生成的images目录里面。</p>
+<a id="more"></a>
+
+<p>打开Typora的设置页面（File–&gt;Preferences…），在左边点击Image，按照下图所示修改右边的栏目。按照这个设置，每次我们文章编辑过程中插入一张图片的时候，该图片就会被上传到source\images\&lt;<em>博文名字</em>&gt;这个目录里。另外我们需要勾选“尽可能使用相对路径”。</p>
+<p><img src="/images/2020-03-27-Solve-Typora-Hexo-Image-Problem/11TyporaSettings_C.png" alt="11TyporaSettings_C"></p>
+<h2 id="Hexo-Post-模板编辑"><a href="#Hexo-Post-模板编辑" class="headerlink" title="Hexo Post 模板编辑"></a>Hexo Post 模板编辑</h2><p>前一步里经过修改，Typora知道如何把图片拷贝到正确的目录。但是Hexo在生成静态网页的时候得到的图片链接地址还是不正确。这个时候我们需要在博文模板的front-matter里加一行，指定博文的根目录。</p>
+<p>打开scaffolds目录下面的post.md，在里面加上下面这行文字：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">typora-root-url: ../</span><br></pre></td></tr></table></figure>
+
+<p>如下图所示：</p>
+<p><img src="/images/2020-03-27-Solve-Typora-Hexo-Image-Problem/11TyporaSettings_D.png" alt="11TyporaSettings_D"></p>
+<p>这样经过以上的设置，用Typora编辑博文时插入的图片能被拷贝到正确的文件夹，而且Hexo解析出来的静态网页也含有正确的图片链接地址。</p>
+]]></content>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Typora</tag>
+        <tag>Markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>创建自己的独立博客（二）</title>
+    <url>/2020/03/27/Create-Your-Own-Blog-02/</url>
+    <content><![CDATA[<p>在上一篇博文中我介绍了如何安装Git、Node.js和Hexo，并且演示了如何使用Hexo创建自己的第一个本地博客。有了自己的博客之后当然要开始写博文啦，下面我们来看看在Hexo环境下发布一条新博文是如何操作的。</p>
+<h2 id="在Hexo里添加新博文"><a href="#在Hexo里添加新博文" class="headerlink" title="在Hexo里添加新博文"></a>在Hexo里添加新博文</h2><p>在Hexo里添加一条新博文很简单，只需要在Command Prompt里面输入下面的命令：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo new “Create Your Own Blog 01"</span><br></pre></td></tr></table></figure>
+
+<p>需要说明一下，”hexo new”是Hexo用来生成新博文的内置命令。“Create Your Own Blog 01”是用户选择的新博文名字。注意：如果博文名字里有空格需要用双引号把博文名字引起来。</p>
+<p>上述命令的输出结果如下：</p>
+<p><img src="/images/2020-03-27-Create-Your-Own-Blog-02/07AddFirstPost_A.png" alt="07AddFirstPost_A"></p>
+<p>从上图可以看到，执行了上面的命令之后Hexo会在source\_posts\目录下面生成一个名叫”Create-Your-Own-Blog-01.md“的文件。注意这个文件名跟我们选择的新博文名字相同，只不过空格被减号（”-“）代替了。</p>
+<a id="more"></a>
+
+<p>这个时候我们在Windows Explorer里就会看到source\_posts\目录里的这个新文件：</p>
+<p><img src="/images/2020-03-27-Create-Your-Own-Blog-02/07AddFirstPost_B.png" alt="07AddFirstPost_B"></p>
+<p>下面我们需要做的就是用<a href="https://typora.io" target="_blank" rel="noopener">Typora</a>或者别的Markdown语言编辑器打开这个新生成的文件开始我们的博文写作了。</p>
+<h3 id="发布新博文"><a href="#发布新博文" class="headerlink" title="发布新博文"></a>发布新博文</h3><p>当我们在Typora里编辑完新博文帖子后就可以发布了。发布新主题的命令我在上一篇博文里已经介绍过，在Command Prompt里面输入下面两个命令：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo generate</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<p>打开你的网页浏览器，在地址栏里输入 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> ，然后按回车，我们的新博文就出现在博客网站上了 -:)</p>
+<h2 id="在Hexo里删除旧博文"><a href="#在Hexo里删除旧博文" class="headerlink" title="在Hexo里删除旧博文"></a>在Hexo里删除旧博文</h2><p>有时候我们需要删除旧的博文。Hexo并不提供删除旧博文的命令，我们可以用下面的方法来删除旧博文：</p>
+<ol>
+<li><p>在source\_posts\目录下面删除想要删掉的博文文件。</p>
+</li>
+<li><p>在Command Prompt里面输入下面的命令以清理数据库信息：</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在Command Prompt里面输入下面的命令重新生成静态网页：</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo generate</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>打开网页浏览器，在地址栏里输入 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> ，然后按回车，我们会发现删掉的旧博文已经不在博客网站上了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在这篇文章里我介绍了如何在Hexo里面添加新博文和删除旧博文。下一篇文章里我会介绍如何把本地博客发布到互联网上，这样我们就可以把自己的博客分享给自己的亲人朋友以及千千万万的网友了。</p>
+]]></content>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Blog</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>创建自己的独立博客（一）</title>
+    <url>/2020/03/27/Create-Your-Own-Blog-01/</url>
+    <content><![CDATA[<p>我喜欢折腾些乱七八糟的东西，从木匠活儿到组乐队到装电脑到折腾家用电器，可谓五花八门保罗万象。每次自己花时间花精力琢磨后完成一件事还是很有成就感的。既然花了时间花了精力，最好想办法记录下来，这样以后再折腾同样的东西或者要维修升级的时候就不用再重复折腾一遍。“好记性不如烂笔头”，脑袋再好使也不如笔下记的东西可靠，是不？而且记录的过程也是一个再思考的过程，能让我更好的理清事情的来龙去脉，加深自己的理解。</p>
+<p>用博客记录自己折腾的项目是个很好的方法。那么怎么才能拥有自己的博客呢？Hexo是一个理想的解决方案。</p>
+<h2 id="什么是Hexo"><a href="#什么是Hexo" class="headerlink" title="什么是Hexo"></a>什么是Hexo</h2><p>Hexo是一个快速简洁高效的博客框架工具。它可以把Markdown文档快速解析成静态HTML页面，并支持各种漂亮的主题。本文首先介绍如何用Hexo在本地计算机上建立一个自己的博客。后续文章会介绍如何把本地计算机上的博客文章发布到GitHub上分享给互联网上的朋友。</p>
+<h2 id="搭建本地写作环境"><a href="#搭建本地写作环境" class="headerlink" title="搭建本地写作环境"></a>搭建本地写作环境</h2><p>使用Hexo必须要先安装Git和Node.js，下面分别介绍它们的安装。我的电脑运行的是64位的Windows 10操作系统，所以所有的示例和截屏都是在Windows系统上完成的。如果你使用的是Mac OSX或者Linux，安装过程可能会稍有不同。</p>
+<h3 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h3><ol>
+<li><p>在这篇文章写作的时候Git的最新版本是v2.26.0。首先登录Git的<a href="https://git-scm.com/download/win" target="_blank" rel="noopener">官方网站</a>，下载安装文件Git-2.26.0-64-bit.exe，如下图所示。</p>
+<p> <img src="/images/2020-03-27-Create-Your-Own-Blog-01/01DownloadGit.png" alt="01DownloadGit"></p>
+ <a id="more"></a>
+</li>
+<li><p>双击下载的Git-2.26.0-64-bit.exe文件，开始安装Git。安装的过程简单直观，一路“Next”过去就好。</p>
+<p> <img src="/images/2020-03-27-Create-Your-Own-Blog-01/02InstallGit_L.png" alt="02InstallGit_L"></p>
+</li>
+<li><p>走到下面这个界面就表示Git已经成功安装。</p>
+<p> <img src="/images/2020-03-27-Create-Your-Own-Blog-01/02InstallGit_M.png" alt="02InstallGit_M"></p>
+</li>
+</ol>
+<h3 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h3><ol>
+<li><p>在这篇文章写作的时候Node.js的最新版本是v12.16.1。首先登录Node.js的<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">官方网站</a>，下载安装文件node-v12.16.1-x64.msi，如下图所示。</p>
+<p> <img src="/images/2020-03-27-Create-Your-Own-Blog-01/03DownloadNodejs.png" alt="03DownloadNodejs"></p>
+</li>
+<li><p>双击运行刚才下载的node-v12.16.1-x64.msi，开始安装Node.js。安装过程简单直接，一路“Next”就好。</p>
+<p> <img src="/images/2020-03-27-Create-Your-Own-Blog-01/04InstallNodejs_G.png" alt="04InstallNodejs_G"></p>
+</li>
+<li><p>走到下面这个界面就表示Git已经成功安装。</p>
+<p> <img src="/images/2020-03-27-Create-Your-Own-Blog-01/04InstallNodejs_H.png" alt="04InstallNodejs_H"></p>
+</li>
+</ol>
+<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><ol>
+<li><p>Hexo的安装过程很简单。以管理员身份打开一个Command Prompt，输入以下命令开始安装Hexo：</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli</span><br></pre></td></tr></table></figure>
+
+<p> 成功安装的输出结果如下图所示：</p>
+<p> <img src="/images/2020-03-27-Create-Your-Own-Blog-01/05InstallHexo_C.png" alt="05InstallHexo_C"></p>
+</li>
+</ol>
+<h2 id="创建第一个本地博客"><a href="#创建第一个本地博客" class="headerlink" title="创建第一个本地博客"></a>创建第一个本地博客</h2><p>经过上面的过程，我们已经成功地安装了Git、Node.js和Hexo。下面就来创建我们的第一个本地博客。</p>
+<ol>
+<li><p>首先建议在电脑上建一个目录用来存放第一个本地博客的所有文件。我在E盘上创建了一个Blogs目录，用来存放我的博客文件。在Command Prompt里先用cd命令进入E:\Blogs目录，然后执行下面的命令：</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo init Hexo_Git_Nodejs</span><br></pre></td></tr></table></figure>
+
+<p> 这里要说明一下，上面命令中的“Hexo_Git_Nodejs”是我自己选择的一个目录名，你可以选择合适你的目录名。执行了上面这个命令之后，Hexo会在E:\Blogs目录下建立一个Hexo_Git_Nodejs目录，然后把必要的文件和文件夹拷贝到新建的这个目录下，如下图所示：</p>
+<p> <img src="/images/2020-03-27-Create-Your-Own-Blog-01/06FirstHexoProject_A.png" alt="06FirstHexoProject_A"></p>
+<p> 上面的初始化命令执行完之后如果我们用Windows Explorer打开E:\Blogs\Hexo_Git_Nodejs目录就会发现里面已经有好些刚才Hexo拷进去的文件和文件夹：</p>
+<p> <img src="/images/2020-03-27-Create-Your-Own-Blog-01/06FirstHexoProject_D.png" alt="06FirstHexoProject_D"></p>
+<p> 这里简单介绍一下上图中的文件和目录结构：</p>
+<ul>
+<li><p>_config.yml</p>
+<p>  这是我们博客网站的配置文件，我们可以修改这个文件来改变诸如博客名称、网站说明、网站作者等设置。另外这个文件还用来设置Hexo生成静态网页所用的一些参数。</p>
+</li>
+<li><p>scaffolds目录</p>
+<p>  scaffolds目录用来存储模板文件。默认的Hexo安装会在这个目录下生成三个模板文件：post.md，draft.md和page.md。</p>
+</li>
+<li><p>source目录</p>
+<p>  source目录用来存储我们博客网站的真正内容，包括博客帖子、图片、视频、音频和其他要发布的内容。Hexo会把这个目录里面能够发布的文件生成静态网页并把静态网页存储到public目录下（Hexo生成静态网页时会自动创建public目录）。</p>
+</li>
+<li><p>themes目录</p>
+<p>  themes目录存储网站的各种主题模板。默认的Hexo安装只有一个landscape主题模板。以后我们可以添加自己喜欢的主题到这个目录并把它应用到我们的博客网站。</p>
+</li>
+</ul>
+</li>
+<li><p>执行完第一步的目录初始化命令之后，还需要执行下面两个命令：</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd Hexo_Git_Nodejs</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<p> 输出结果如下所示：</p>
+<p> <img src="/images/2020-03-27-Create-Your-Own-Blog-01/06FirstHexoProject_C.png" alt="06FirstHexoProject_C"></p>
+</li>
+<li><p>经过上面两步，我们第一个本地博客的基本框架已经搭好，而且Hexo已经为我们写好了第一条博文“Hello World”。我们来看看我们的第一个博客长什么样子吧。在Command Prompt里面输入下面的命令：</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+
+<p> 这个命令会在public目录下生成静态的博客页面。</p>
+</li>
+<li><p>Hexo自带一个web服务器，我们需要启动这个服务器才能看到我们的第一个博客。在Command Prompt里面输入如下命令启动web服务器：</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<p> 输出结果如下：</p>
+<p> <img src="/images/2020-03-27-Create-Your-Own-Blog-01/06FirstHexoProject_F.png" alt="06FirstHexoProject_F"></p>
+</li>
+<li><p>在电脑上打开网页浏览器（我用的是火狐浏览器，不过任意浏览器都可以），在地址栏里输入<a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> ，然后回车，我们的新博客就出现了！</p>
+<p> <img src="/images/2020-03-27-Create-Your-Own-Blog-01/06FirstHexoProject_G.png" alt="06FirstHexoProject_G"></p>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文里我介绍了如何安装Git、Node.js和Hexo，并且向读者演示了如何创建自己的第一个本地博客。在下面的文章中我会介绍一下用Hexo如何发布新博文和删除旧博文。</p>
+]]></content>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Blog</tag>
+      </tags>
+  </entry>
+</search>
