@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>昨晚的超级月亮</title>
+    <url>/2020/04/08/Super-Moon-20200407/</url>
+    <content><![CDATA[<p>用相机拍了一张昨晚的超级月亮：</p>
+<p><img src="/images/2020-04-08-Super-Moon-20200407/SuperMoon20200407.jpg" alt="SuperMoon20200407"></p>
+]]></content>
+      <tags>
+        <tag>Photography, Life</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>创建自己的独立博客（三）</title>
     <url>/2020/03/28/Create-Your-Own-Blog-03/</url>
     <content><![CDATA[<p>通过前面两篇文章的介绍，我们可以用Hexo在创建了一个本地博客并且撰写一些精彩的博文。但是这些博文只存在于自己的电脑上，只能从本机上才能看到。如何才能把自己的博客发布到互联网上与人分享呢？我们可以把Hexo生成的静态网页托管到GitHub上，并通过GitHub来分享自己的博客。</p>
