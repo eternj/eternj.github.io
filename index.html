@@ -205,7 +205,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2026-02-15 16:09:33 / Modified: 22:01:31" itemprop="dateCreated datePublished" datetime="2026-02-15T16:09:33-08:00">2026-02-15</time>
+              <time title="Created: 2026-02-15 16:09:33 / Modified: 22:05:19" itemprop="dateCreated datePublished" datetime="2026-02-15T16:09:33-08:00">2026-02-15</time>
             </span>
 
           
@@ -246,14 +246,14 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get -y install avahi-daemon</span><br><span class="line"><span class="built_in">sudo</span> systemctl restart avahi-daemon</span><br></pre></td></tr></table></figure>
 
 <ol start="2">
-<li>Run the following command to create and run an atvloadly docker. Make sure you have docker installed before running the following commands.</li>
+<li>Run the following command to create and run an atvloadly docker. Make sure you have docker engine installed before running the following commands (you can follow <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/ubuntu/">this article</a> to install docker engine).</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> docker run --privileged -d --name=atvloadly --restart=always -p 5533:80 -v /path/to/mount/dir:/data -v /var/run/dbus:/var/run/dbus -v /var/run/avahi-daemon:/var/run/avahi-daemon bitxeno/atvloadly:latest</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>Basically this command pulls the atvloadly docker image from the docker repository and starts a docker using the ports and volumes specified in the command.</li>
+<li>Basically this command pulls the atvloadly docker image from the docker repository and starts a atvloadly docker container using the ports and volumes specified in the command.</li>
 <li>Remember to replace <em>&#x2F;path&#x2F;to&#x2F;mount&#x2F;dir</em> with a real directory on your host machine. Since I was runing the atvloadly docker as root, I made sure <em>&#x2F;path&#x2F;to&#x2F;mount&#x2F;dir</em> was owned by root (may not be necessary).</li>
-<li>The above command opens Port 5533 on the host machine, which is mapped to Port 80 in the docker.</li>
+<li>The above command opens Port 5533 on the host machine, which is mapped to Port 80 in the docker. You can change Port 5533 to a number of your choice but I just used the default number.</li>
 <li>To access the atvloadly web service, you use a computer (doesn’t have to be the machine hosting the atvloadly docker) and a web browser (Chrome, Firefox, Safari, or other browsers). Assuming the host machine IP is 192.168.1.12, you can access the newly created atvloadly server by typing <a target="_blank" rel="noopener" href="http://192.168.1.12:5533/">http://192.168.1.12:5533</a> in your web browser and hit enter. If everything goes well, you should be greeted by the atvloadly homepage.</li>
 </ul>
 <p><strong>Add Apple Account to atvloadly</strong><br>First thing to do is to add your newly-created Apple account to atvloadly following the steps below:</p>
