@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="通过前面两篇文章的介绍，我们可以用Hexo在创建了一个本地博客并且撰写一些精彩的博文。但是这些博文只存在于自己的电脑上，只能从本机上才能看到。如何才能把自己的博客发布到互联网上与人分享呢？我们可以把Hexo生成的静态网页托管到GitHub上，并通过GitHub来分享自己的博客。 注册GitHub帐号 打开网页浏览器，在地址栏里输入 https:&#x2F;&#x2F;github.com&#x2F;new ，然后点击“Crea">
+<meta property="og:type" content="article">
+<meta property="og:title" content="创建自己的独立博客（三）">
+<meta property="og:url" content="http://yoursite.com/2020/03/28/Create-Your-Own-Blog-03/index.html">
+<meta property="og:site_name" content="EternJ&#39;s Blog">
+<meta property="og:description" content="通过前面两篇文章的介绍，我们可以用Hexo在创建了一个本地博客并且撰写一些精彩的博文。但是这些博文只存在于自己的电脑上，只能从本机上才能看到。如何才能把自己的博客发布到互联网上与人分享呢？我们可以把Hexo生成的静态网页托管到GitHub上，并通过GitHub来分享自己的博客。 注册GitHub帐号 打开网页浏览器，在地址栏里输入 https:&#x2F;&#x2F;github.com&#x2F;new ，然后点击“Crea">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/images/2020-03-28-Create-Your-Own-Blog-03/21CreateGithubAccount_A.png">
+<meta property="og:image" content="http://yoursite.com/images/2020-03-28-Create-Your-Own-Blog-03/21CreateGithubAccount_B.png">
+<meta property="og:image" content="http://yoursite.com/images/2020-03-28-Create-Your-Own-Blog-03/21CreateGithubAccount_C.png">
+<meta property="og:image" content="http://yoursite.com/images/2020-03-28-Create-Your-Own-Blog-03/21CreateGithubAccount_D.png">
+<meta property="og:image" content="http://yoursite.com/images/2020-03-28-Create-Your-Own-Blog-03/22Deploy_A.png">
+<meta property="og:image" content="http://yoursite.com/images/2020-03-28-Create-Your-Own-Blog-03/22Deploy_B.png">
+<meta property="og:image" content="http://yoursite.com/images/2020-03-28-Create-Your-Own-Blog-03/22Deploy_C.png">
+<meta property="article:published_time" content="2020-03-28T21:06:14.000Z">
+<meta property="article:modified_time" content="2020-03-30T02:03:27.017Z">
+<meta property="article:author" content="EternJ">
+<meta property="article:tag" content="Blog">
+<meta property="article:tag" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/2020-03-28-Create-Your-Own-Blog-03/21CreateGithubAccount_A.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/03/28/Create-Your-Own-Blog-03/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>创建自己的独立博客（三） | EternJ's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">EternJ's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/28/Create-Your-Own-Blog-03/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="EternJ">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="EternJ's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          创建自己的独立博客（三）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-03-28 14:06:14" itemprop="dateCreated datePublished" datetime="2020-03-28T14:06:14-07:00">2020-03-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-29 19:03:27" itemprop="dateModified" datetime="2020-03-29T19:03:27-07:00">2020-03-29</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>通过前面两篇文章的介绍，我们可以用Hexo在创建了一个本地博客并且撰写一些精彩的博文。但是这些博文只存在于自己的电脑上，只能从本机上才能看到。如何才能把自己的博客发布到互联网上与人分享呢？我们可以把Hexo生成的静态网页托管到GitHub上，并通过GitHub来分享自己的博客。</p>
+<h2 id="注册GitHub帐号"><a href="#注册GitHub帐号" class="headerlink" title="注册GitHub帐号"></a>注册GitHub帐号</h2><ol>
+<li><p>打开网页浏览器，在地址栏里输入 <a target="_blank" rel="noopener" href="https://github.com/new">https://github.com/new</a> ，然后点击“Create an account”：</p>
+<p> <img src="/images/2020-03-28-Create-Your-Own-Blog-03/21CreateGithubAccount_A.png" alt="21CreateGithubAccount_A"></p>
+ <span id="more"></span>
+</li>
+<li><p>然后填入自己的信息，包括自己选择的用户名（Username）、注册邮箱（Email address）和密码（Password）。解一个防注册机器人的谜题，然后点击“Select a plan”：</p>
+</li>
+</ol>
+<p><img src="/images/2020-03-28-Create-Your-Own-Blog-03/21CreateGithubAccount_B.png" alt="21CreateGithubAccount_B"></p>
+<ol start="3">
+<li>然后选择自己的plan，当然是选择free的咯～</li>
+</ol>
+<p><img src="/images/2020-03-28-Create-Your-Own-Blog-03/21CreateGithubAccount_C.png" alt="21CreateGithubAccount_C"></p>
+<ol start="4">
+<li>选择free的plan之后Github会往我们的注册信箱发一封验证电邮。登录注册使用的信箱，点击GitHub发给我们的验证电邮里面的链接，我们的注册邮箱就完成了验证。接下来我们就可以创建一个GitHub仓库（repository）了。</li>
+</ol>
+<h2 id="创建GitHub仓库"><a href="#创建GitHub仓库" class="headerlink" title="创建GitHub仓库"></a>创建GitHub仓库</h2><ol>
+<li><p>登录进我们刚刚建立的GitHub帐号，GitHub会要求我们新建一个仓库（repository）。选择一个仓库名字 （repository name），然后点击 “Create repository”。这里建议用 “username.github.io” 做为仓库名，这样后面就可以用 <a target="_blank" rel="noopener" href="https://username.github.io/">https://username.github.io</a> 这个地址来访问我们的博客。</p>
+<p> <img src="/images/2020-03-28-Create-Your-Own-Blog-03/21CreateGithubAccount_D.png" alt="21CreateGithubAccount_D"></p>
+<p> 这样我们的第一个GitHub仓库就建成了。记住这个仓库的地址是：<a target="_blank" rel="noopener" href="https://github.com/eternj/eternj.github.io">https://github.com/eternj/eternj.github.io</a> ，我们发布Hexo生成的静态网页时需要用到这个地址。另外需要说明的是上面这个地址只是在发布静态网页时用到，后面要访问发布后的博客时则用这个地址 <a target="_blank" rel="noopener" href="https://eternj.github.io/">https://eternj.github.io</a> 。</p>
+</li>
+</ol>
+<h2 id="发布Hexo静态网页到GitHub"><a href="#发布Hexo静态网页到GitHub" class="headerlink" title="发布Hexo静态网页到GitHub"></a>发布Hexo静态网页到GitHub</h2><p>现在就是我们把Hexo建立的本地博客发送到GitHub的激动时刻了。</p>
+<ol>
+<li><p>我们将使用git把本地博客内容同步到刚建立的GitHub仓库去。如果这是我们第一次使用git，我们需要在 Command Prompt 里面输入下面的命令来配置我们的git邮箱和名字（相当于告诉git我们的身份）：</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.email &quot;your-email-address&quot;</span><br><span class="line">git config --global user.name &quot;your-name&quot;</span><br></pre></td></tr></table></figure>
+
+<p> 注意上面命令里的 “your-email-address” 和 “your-name” 需要分别替换成我们注册GitHub帐号时用的注册邮箱和我们自己的名字（真名或者网名都可以）。</p>
+</li>
+<li><p>安装Hexo的git布署器。这一步不能忽略，不然下面的布署命令会出错。在 Command Prompt 里面输入以下命令完成安装：</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改本地博客的_config.xml文件，把Deployment段修改成这样：</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/eternj/eternj.github.io</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后在Command Prompt里面执行Hexo的布署命令：</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p> 在布署的时候会弹出一个对话框，让我们输入自己的GitHub的用户名和密码。这是一个一次性的身份验证过程，我们输入的用户名和密码会被保存在本机上，以后布署的时候就不需要再输入了。</p>
+<p> 布署命令的输出结果如下图所示：</p>
+<p> <img src="/images/2020-03-28-Create-Your-Own-Blog-03/22Deploy_A.png" alt="22Deploy_A"></p>
+<p> <img src="/images/2020-03-28-Create-Your-Own-Blog-03/22Deploy_B.png" alt="22Deploy_B"></p>
+<p> 至此，我们的本地博客网站就被发布到GitHub上了。</p>
+</li>
+</ol>
+<h2 id="访问发布后的博客"><a href="#访问发布后的博客" class="headerlink" title="访问发布后的博客"></a>访问发布后的博客</h2><p>打开网页浏览器，输入我们的GitHub仓库地址（示例里面的地址是 <a target="_blank" rel="noopener" href="https://eternj.github.io/">https://eternj.github.io</a> ），然后按回车，发布后的博客就展现在我们眼前了 -:)</p>
+<p><img src="/images/2020-03-28-Create-Your-Own-Blog-03/22Deploy_C.png" alt="22Deploy_C"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文叙述了如何把Hexo生成的本地博客发布到GitHub上和大家分享。至此，这个系列的三篇文章都写完了。相信大家在读过这三篇文章后能按部就班地创建和发布自己的博客了。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+              <a href="/tags/Blog/" rel="tag"># Blog</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/27/Solve-Typora-Hexo-Image-Problem/" rel="prev" title="解决用Typora编辑Hexo帖子时图片的链接问题">
+      <i class="fa fa-chevron-left"></i> 解决用Typora编辑Hexo帖子时图片的链接问题
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/08/Super-Moon-20200407/" rel="next" title="昨晚的超级月亮">
+      昨晚的超级月亮 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E5%86%8CGitHub%E5%B8%90%E5%8F%B7"><span class="nav-number">1.</span> <span class="nav-text">注册GitHub帐号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAGitHub%E4%BB%93%E5%BA%93"><span class="nav-number">2.</span> <span class="nav-text">创建GitHub仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%91%E5%B8%83Hexo%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5%E5%88%B0GitHub"><span class="nav-number">3.</span> <span class="nav-text">发布Hexo静态网页到GitHub</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E5%8F%91%E5%B8%83%E5%90%8E%E7%9A%84%E5%8D%9A%E5%AE%A2"><span class="nav-number">4.</span> <span class="nav-text">访问发布后的博客</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">EternJ</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EternJ</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

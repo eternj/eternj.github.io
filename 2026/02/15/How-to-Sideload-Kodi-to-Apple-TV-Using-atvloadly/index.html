@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="OverviewThe goal of this article is to share how I installed (sideloaded) Kodi to my Apple TV 4K (2nd Gen). Kodi is a media center and entertainment hub that I have been using since pre-Kodi era (when">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Sideload Kodi to Apple TV Using atvloadly">
+<meta property="og:url" content="http://yoursite.com/2026/02/15/How-to-Sideload-Kodi-to-Apple-TV-Using-atvloadly/index.html">
+<meta property="og:site_name" content="EternJ&#39;s Blog">
+<meta property="og:description" content="OverviewThe goal of this article is to share how I installed (sideloaded) Kodi to my Apple TV 4K (2nd Gen). Kodi is a media center and entertainment hub that I have been using since pre-Kodi era (when">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-02-16T00:09:33.000Z">
+<meta property="article:modified_time" content="2026-02-16T00:10:59.894Z">
+<meta property="article:author" content="EternJ">
+<meta property="article:tag" content="Apple TV">
+<meta property="article:tag" content="Kodi">
+<meta property="article:tag" content="Sideload">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2026/02/15/How-to-Sideload-Kodi-to-Apple-TV-Using-atvloadly/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>How to Sideload Kodi to Apple TV Using atvloadly | EternJ's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">EternJ's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2026/02/15/How-to-Sideload-Kodi-to-Apple-TV-Using-atvloadly/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="EternJ">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="EternJ's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          How to Sideload Kodi to Apple TV Using atvloadly
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-02-15 16:09:33 / Modified: 16:10:59" itemprop="dateCreated datePublished" datetime="2026-02-15T16:09:33-08:00">2026-02-15</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong>Overview</strong><br>The goal of this article is to share how I installed (sideloaded) Kodi to my Apple TV 4K (2nd Gen). <a target="_blank" rel="noopener" href="https://kodi.tv/">Kodi</a> is a media center and entertainment hub that I have been using since pre-Kodi era (when Kodi was XBMC). It has a beautiful interface and is very easy to use. I mainly use Kodi to watch and record real-time TV programs, as well as watch ripped movies. Kodi has powerful add-ons that can expand and enhance its features and capabilities. Kodi officially supports Windows, linux, and android. Unfortunately, Apple TV, which runs tvOS, does not have an official version of Kodi in App Store. This means we cannot download and install Kodi from App Store. Instead, we’ll need to find some unofficial way to install or sideload it to Apple TVs.</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/bitxeno/atvloadly">atvloadly</a> is a web service that supports sideloading apps on Apple TV. In this article, I’ll share how I setup an atvloadly docker and how I used atvloadly to sideload Kodi to my Apple TV. Hopefully this will help someone else who’s looking to do the same.</p>
+<p><strong>Workflow and Prerequisites</strong></p>
+<ol>
+<li><p>Workflow</p>
+<ul>
+<li>Setup an atvloadly docker.</li>
+<li>Add a free Apple account to atvloadly.</li>
+<li>Pair the atvloadly web service with the Apple TV.</li>
+<li>Sideload Kodi to the Apple TV.</li>
+</ul>
+</li>
+<li><p>Prerequisites</p>
+<ul>
+<li><strong>A computer running linux</strong>. Unfortunately, this method does NOT work on Windows. It doesn’t need to be a full-fledged laptop or desktop. You can use a <a target="_blank" rel="noopener" href="https://www.raspberrypi.com/">Raspberry Pi</a> if you have one lying around. I used a single board computer called <a target="_blank" rel="noopener" href="https://pine64.org/devices/rock64/">Rock64</a> running a stripped down version of Debian.</li>
+<li><strong>A burned Apple account</strong>. As noted on the atvloadly website, it is a good ideal to use a dedicated Apple ID or Apple account for sideloading. A free Apple account will work. I just created a new free Apple account for this purpose. You can create one through <a target="_blank" rel="noopener" href="https://developer.apple.com/">Apple Developer Account</a>.</li>
+<li><strong>A phone for two-factor authorization (2FA) verification</strong>. When creating a new Apple account for sideloading, you need a phone for 2FA. atvloadly needs to be authorized as a trusted device (it will be virtualized as a MacBook). When adding the Apple account to atvloadly, Apple will send a 2FA verification code to the registered phone number and you will need to enter the code and authorize it.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Setup an atvloadly Docker</strong><br>Setting up an atvloadly docker is pretty straightforward. I just followed the instructions on the atvloadly website:</p>
+<ol>
+<li>Install <em>avahi-daemon</em> on Rock64. Run the following commands in a command prompt.</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get -y install avahi-daemon</span><br><span class="line"><span class="built_in">sudo</span> systemctl restart avahi-daemon</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Run the following command to create and run an atvloadly docker. Make sure you have docker installed before running the following commands.</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> docker run --privileged -d --name=atvloadly --restart=always -p 5533:80 -v /path/to/mount/dir:/data -v /var/run/dbus:/var/run/dbus -v /var/run/avahi-daemon:/var/run/avahi-daemon bitxeno/atvloadly:latest</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Basically this command pulls the atvloadly docker image from the docker repository and starts a docker using the ports and volumes specified in the command.</li>
+<li>Remember to replace <em>&#x2F;path&#x2F;to&#x2F;mount&#x2F;dir</em> with a real directory on your host machine. Since I was runing the atvloadly docker as root, I made sure <em>&#x2F;path&#x2F;to&#x2F;mount&#x2F;dir</em> was owned by root (may not be necessary).</li>
+<li>The above command opens Port 5533 on the host machine, which is mapped to Port 80 in the docker.</li>
+<li>To access the atvloadly web service, you use a computer (doesn’t have to be the machine hosting the atvloadly docker) and a web browser (Chrome, Firefox, Safari, or other browsers). Assuming the host machine IP is 192.168.1.12, you can access the newly created atvloadly server by typing <a target="_blank" rel="noopener" href="http://192.168.1.12:5533/">http://192.168.1.12:5533</a> in your web browser and hit enter. If everything goes well, you should be greeted by the atvloadly homepage.</li>
+</ul>
+<p><strong>Add Apple Account to atvloadly</strong><br>First thing to do is to add your newly-created Apple account to atvloadly following the steps below:</p>
+<ol>
+<li>On the atvloadly homepage, select “PREFERENCES –&gt; Accounts”.</li>
+<li>Click “ADD ACCOUNT” button.</li>
+<li>The “Login Apple Account” window opens, like this:<br>![[Pasted image 20260214205157.png]]</li>
+<li>Input the email and password of your newly-created Apple account and click “LOGIN” button.</li>
+<li>A second window will pop up and ask you to input a security code that was just sent to your phone. Enter that code and click “OK”.</li>
+<li>After that you should see that your new Apple account is listed on the Accounts page.</li>
+</ol>
+<p><strong>Pair Apple TV</strong><br>Now it’s time to pair your Apple TV in atvloadly. My Apple TV 4K (2nd Gen) does not have a usb port so I couldn’t use a USB cable to connect it to my PC. I had to pair it wirelessly. To do this, I followed the steps below:</p>
+<ol>
+<li>On your Apple TV, open the Settings menu. Then select “Remote and Devices –&gt; Remote App and Devices”. This will cause your Apple TV to enter the pairing mode.</li>
+<li>Refresh the atvloadly homepage. Now you should be able to see your Apple TV with word “Pairable”.</li>
+<li>Click on your Apple TV to pair. Your Apple TV will display a pairing code on your TV. Enter that code in your atvloadly page. Now your Apple TV should be successfully paired in atvloadly.</li>
+</ol>
+<p><strong>Sideload Kodi to Your Apple TV</strong><br>Once you successfully paired your Apple TV, you can start sideloading to your Apple TV using atvloadly. Follow the steps below:</p>
+<ol>
+<li>Download the unsigned Kodi ipa file from <a target="_blank" rel="noopener" href="https://archive.org/download/kodi-tvos_21.2">here</a>. Make sure you download the one for tvOS, not iOS.</li>
+<li>Open atvloadly home page on your computer. Click the Apple TV that you paired in the last step. A new window will pop up, like this:<br>![[Pasted image 20260214210435.png]]</li>
+<li>Click “CHOOSE FILE” button and select kodi-tvos_21.2.ipa you just downloaded.</li>
+<li>Select your Apple account from the dropdown list.</li>
+<li>Click “INSTALL” button and atvloadly will do its magic and install Kodi to your Apple TV. This step will take a while since Kodi is a decent size app so be paitent. Behind the scene, I believe atvloadly does the following: 1) creating a developer certificate from your Apple account, 2) signing the Kodi ipa using that certificate, and 3) installing Kodi to your Apple TV after signing.</li>
+<li>After atvloadly shows “Done” in its message box, Kodi has been successfully installed to your Apple TV. You can now go to your Apple TV and enjoy Kodi -:)</li>
+</ol>
+<p><strong>Some Notes</strong></p>
+<ul>
+<li>As of this writing, the latest atvloadly version is v0.3.3. The latest tvOS is v26.1. They work together pretty well.</li>
+<li>Since I used a free Apple account to sideload Kodi to my Apple TV. The certificate is only good for 7 days which means Kodi will stop working after 7 days. However, by default, atvloadly will automatically refresh (re-sign) the Kodi app on Day 6. That way, you can keep using Kodi without manually sideloading Kodi again after 7 days.</li>
+<li>You can use a paid Apple developer account to sideload Kodi. In that case the installation is good for 365 days. However, since atvloadly automatically refresh the installation every 7 days, you don’t need to pay for a real Apple developer account to have a “permanent” Kodi app on your Apple TV.</li>
+<li>For Kodi, I only use two add-ons with it: NextPVR and Jellyfin add-ons. NextPVR add-on allows me to watch over-the-air (OTA) TV programs. Jellyfin add-on allows me to watch ripped TV series and blueray movies. Both add-ons work flawlessly for me. I haven’t tried other add-ons in Kodi.</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Kodi/" rel="tag"># Kodi</a>
+              <a href="/tags/Apple-TV/" rel="tag"># Apple TV</a>
+              <a href="/tags/Sideload/" rel="tag"># Sideload</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/08/Super-Moon-20200407/" rel="prev" title="昨晚的超级月亮">
+      <i class="fa fa-chevron-left"></i> 昨晚的超级月亮
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">EternJ</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EternJ</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
