@@ -203,10 +203,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2026-02-15 16:09:33 / Modified: 23:53:35" itemprop="dateCreated datePublished" datetime="2026-02-15T16:09:33-08:00">2026-02-15</time>
+              <time title="Created: 2026-02-15 16:09:33" itemprop="dateCreated datePublished" datetime="2026-02-15T16:09:33-08:00">2026-02-15</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-02-16 11:58:38" itemprop="dateModified" datetime="2026-02-16T11:58:38-08:00">2026-02-16</time>
+              </span>
 
           
 
@@ -219,34 +225,33 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>Overview</strong><br>The goal of this article is to share how I installed (sideloaded) Kodi to my Apple TV 4K (2nd Gen). <a target="_blank" rel="noopener" href="https://kodi.tv/">Kodi</a> is a media center and entertainment hub that I have been using since pre-Kodi era (when Kodi was XBMC). It has a beautiful interface and is very easy to use. I mainly use Kodi to watch and record real-time TV programs, as well as watch ripped movies. Kodi has powerful add-ons that can expand and enhance its features and capabilities. Kodi officially supports Windows, linux, and android. Unfortunately, Apple TV, which runs tvOS, does not have an official version of Kodi in App Store. This means we cannot download and install Kodi from App Store. Instead, we’ll need to find some unofficial way to install or sideload it to Apple TVs.</p>
+          <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>The goal of this article is to share how I installed (sideloaded) Kodi to my Apple TV 4K (2nd Gen). <a target="_blank" rel="noopener" href="https://kodi.tv/">Kodi</a> is a media center and entertainment hub that I have been using since pre-Kodi era (when Kodi was XBMC). It has a beautiful interface and is easy to use. I mainly use Kodi to watch and record over-the-air (OTA) TV programs, as well as watch ripped blueray movies. Kodi has powerful add-ons that can expand and enhance its features and capabilities. It officially supports Windows, linux, and android. Unfortunately, Apple TV, which runs tvOS, does not have an official version of Kodi in App Store. This means we cannot download and install Kodi from App Store. Instead, we need to find some unofficial way to install or sideload it to Apple TVs.</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/bitxeno/atvloadly">atvloadly</a> is a web service that supports sideloading apps on Apple TV. In this article, I’ll share how I setup an atvloadly docker and how I used atvloadly to sideload Kodi to my Apple TV. Hopefully this will help someone else who’s looking to do the same.</p>
-<p><strong>Workflow and Prerequisites</strong></p>
-<ol>
+<h2 id="Workflow-and-Prerequisites"><a href="#Workflow-and-Prerequisites" class="headerlink" title="Workflow and Prerequisites"></a>Workflow and Prerequisites</h2><ol>
 <li><p>Workflow</p>
 <ul>
 <li>Setup an atvloadly docker.</li>
-<li>Add a free Apple account to atvloadly.</li>
+<li>Add an Apple account to atvloadly.</li>
 <li>Pair the atvloadly web service with the Apple TV.</li>
 <li>Sideload Kodi to the Apple TV.</li>
 </ul>
 </li>
 <li><p>Prerequisites</p>
 <ul>
-<li><strong>A computer running linux</strong>. Unfortunately, this method does NOT work on Windows. It doesn’t need to be a full-fledged laptop or desktop. You can use a <a target="_blank" rel="noopener" href="https://www.raspberrypi.com/">Raspberry Pi</a> if you have one lying around. I used a single board computer called <a target="_blank" rel="noopener" href="https://pine64.org/devices/rock64/">Rock64</a> running a stripped down version of Debian.</li>
-<li><strong>A burned Apple account</strong>. As noted on the atvloadly website, it is a good ideal to use a dedicated Apple ID or Apple account for sideloading. A free Apple account will work. I just created a new free Apple account for this purpose. You can create one through <a target="_blank" rel="noopener" href="https://developer.apple.com/">Apple Developer Account</a>.</li>
-<li><strong>A phone for two-factor authorization (2FA) verification</strong>. When creating a new Apple account for sideloading, you need a phone for 2FA. atvloadly needs to be authorized as a trusted device (it will be virtualized as a MacBook). When adding the Apple account to atvloadly, Apple will send a 2FA verification code to the registered phone number and you will need to enter the code and authorize it.</li>
+<li><strong>A computer running linux</strong>. Unfortunately, this method does not work on Windows. It doesn’t need to be a full-fledged laptop or desktop. You can use a <a target="_blank" rel="noopener" href="https://www.raspberrypi.com/">Raspberry Pi</a> if you have one lying around. I used a single board computer called <a target="_blank" rel="noopener" href="https://pine64.org/devices/rock64/">Rock64</a> running a stripped down version of Debian.</li>
+<li><strong>A burned Apple account</strong>. As noted on the atvloadly website, it is a good ideal to use a dedicated Apple ID or Apple account for sideloading. A free Apple account will work. I just created a new free Apple account for this purpose. You can create one on the <a target="_blank" rel="noopener" href="https://developer.apple.com/">Apple Developer Account</a> webpage.</li>
+<li><strong>A phone for two-factor authorization (2FA)</strong>. When creating a new Apple account for sideloading, you need a phone for 2FA. atvloadly needs to be authorized as a trusted device (it will be virtualized as a MacBook). When adding the Apple account to atvloadly, Apple will send a 2FA verification code to the registered phone number and you will need to enter the code and authorize it.</li>
 </ul>
 </li>
 </ol>
-<p><strong>Setup an atvloadly Docker</strong><br>Setting up an atvloadly docker is pretty straightforward. I just followed the instructions on the atvloadly website:</p>
+<h2 id="Setup-an-atvloadly-Docker"><a href="#Setup-an-atvloadly-Docker" class="headerlink" title="Setup an atvloadly Docker"></a>Setup an atvloadly Docker</h2><p>Setting up an atvloadly docker is pretty straightforward. I just followed the instructions on the atvloadly website:</p>
 <ol>
 <li>Install <em>avahi-daemon</em> on Rock64. Run the following commands in a command prompt.</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get -y install avahi-daemon</span><br><span class="line"><span class="built_in">sudo</span> systemctl restart avahi-daemon</span><br></pre></td></tr></table></figure>
 
 <ol start="2">
-<li>Run the following command to create and run an atvloadly docker. Make sure you have docker engine installed before running the following commands (you can follow <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/ubuntu/">this article</a> to install docker engine).</li>
+<li>Run the following command to create and run an atvloadly docker container. Make sure you have docker engine installed before running the following commands (you can follow <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/ubuntu/">this article</a> to install docker engine).</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> docker run --privileged -d --name=atvloadly --restart=always -p 5533:80 -v /path/to/mount/dir:/data -v /var/run/dbus:/var/run/dbus -v /var/run/avahi-daemon:/var/run/avahi-daemon bitxeno/atvloadly:latest</span><br></pre></td></tr></table></figure>
 
@@ -254,9 +259,9 @@
 <li>Basically this command pulls the atvloadly docker image from the docker repository and starts a atvloadly docker container using the ports and volumes specified in the command.</li>
 <li>Remember to replace <em>&#x2F;path&#x2F;to&#x2F;mount&#x2F;dir</em> with a real directory on your host machine. Since I was runing the atvloadly docker as root, I made sure <em>&#x2F;path&#x2F;to&#x2F;mount&#x2F;dir</em> was owned by root (may not be necessary).</li>
 <li>The above command opens Port 5533 on the host machine, which is mapped to Port 80 in the docker. You can change Port 5533 to a number of your choice but I just used the default number.</li>
-<li>To access the atvloadly web service, you use a computer (doesn’t have to be the machine hosting the atvloadly docker) and a web browser (Chrome, Firefox, Safari, or other browsers). Assuming the host machine IP is 192.168.1.12, you can access the newly created atvloadly server by typing <a target="_blank" rel="noopener" href="http://192.168.1.12:5533/">http://192.168.1.12:5533</a> in your web browser and hit enter. If everything goes well, you should be greeted by the atvloadly homepage.</li>
+<li>To access the atvloadly web service, you use a computer (doesn’t have to be the machine hosting the atvloadly docker) and a web browser (Chrome, Firefox, Safari, or other browsers). Assuming the host machine IP is 192.168.1.12, you can access the newly created atvloadly server by typing <a target="_blank" rel="noopener" href="http://192.168.1.12:5533/">http://192.168.1.12:5533</a> in your web browser and hit enter. If everything goes right, you should be greeted by the atvloadly homepage.</li>
 </ul>
-<p><strong>Add Apple Account to atvloadly</strong><br>First thing to do is to add your newly-created Apple account to atvloadly following the steps below:</p>
+<h2 id="Add-Apple-Account-to-atvloadly"><a href="#Add-Apple-Account-to-atvloadly" class="headerlink" title="Add Apple Account to atvloadly"></a>Add Apple Account to atvloadly</h2><p>First thing to do is to add your newly-created Apple account to atvloadly following the steps below:</p>
 <ol>
 <li><p>On the atvloadly homepage, select “PREFERENCES –&gt; Accounts”.</p>
 </li>
@@ -269,16 +274,16 @@
 </li>
 <li><p>A second window will pop up and ask you to input a security code that was just sent to your phone. Enter that code and click “OK”.</p>
 </li>
-<li><p>After that you should see that your new Apple account is listed on the Accounts page.</p>
+<li><p>After that you should see your Apple account listed on the Accounts page.</p>
 </li>
 </ol>
-<p><strong>Pair Apple TV</strong><br>Now it’s time to pair your Apple TV in atvloadly. My Apple TV 4K (2nd Gen) does not have a usb port so I couldn’t use a USB cable to connect it to my PC. I had to pair it wirelessly. To do this, I followed the steps below:</p>
+<h2 id="Pair-Apple-TV"><a href="#Pair-Apple-TV" class="headerlink" title="Pair Apple TV"></a>Pair Apple TV</h2><p>Now it’s time to pair your Apple TV in atvloadly. My Apple TV 4K (2nd Gen) does not have a usb port so I couldn’t use a USB cable to connect it to my PC. I had to pair it wirelessly. To do this, I followed the instructions below:</p>
 <ol>
-<li>On your Apple TV, open the Settings menu. Then select “Remote and Devices –&gt; Remote App and Devices”. This will cause your Apple TV to enter the pairing mode.</li>
+<li>On your Apple TV, open the Settings menu. Then select “Remote and Devices –&gt; Remote App and Devices”. This will put your Apple TV in the pairing mode.</li>
 <li>Refresh the atvloadly homepage. Now you should be able to see your Apple TV with word “Pairable”.</li>
 <li>Click on your Apple TV to pair. Your Apple TV will display a pairing code on your TV. Enter that code in your atvloadly page. Now your Apple TV should be successfully paired in atvloadly.</li>
 </ol>
-<p><strong>Sideload Kodi to Your Apple TV</strong><br>Once you successfully paired your Apple TV, you can start sideloading to your Apple TV using atvloadly. Follow the steps below:</p>
+<h2 id="Sideload-Kodi-to-Your-Apple-TV"><a href="#Sideload-Kodi-to-Your-Apple-TV" class="headerlink" title="Sideload Kodi to Your Apple TV"></a>Sideload Kodi to Your Apple TV</h2><p>Once you successfully paired your Apple TV, you can start sideloading to your Apple TV using atvloadly. Follow the instructions below:</p>
 <ol>
 <li><p>Download the unsigned Kodi ipa file from <a target="_blank" rel="noopener" href="https://archive.org/download/kodi-tvos_21.2">here</a>. Make sure you download the one for tvOS, not iOS.</p>
 </li>
@@ -294,11 +299,10 @@
 <p><img src="/images/2026-02-15-How-to-Sideload-Kodi-to-Apple-TV-Using-atvloadly/atvloadly_installation_success.png" alt="atvloadly_installation_success"></p>
 </li>
 </ol>
-<p><strong>Some Notes</strong></p>
-<ul>
-<li>As of this writing, the latest atvloadly version is v0.3.3. The latest tvOS is v26.1. They work together pretty well.</li>
-<li>Since I used a free Apple account to sideload Kodi to my Apple TV. The certificate is only good for 7 days which means Kodi will stop working after 7 days. However, by default, atvloadly will automatically refresh (re-sign) the Kodi app on Day 6. That way, you can keep using Kodi without manually sideloading Kodi again after 7 days.</li>
-<li>You can use a paid Apple developer account to sideload Kodi. In that case the installation is good for 365 days. However, since atvloadly automatically refresh the installation every 7 days, you don’t need to pay for a real Apple developer account to have a “permanent” Kodi app on your Apple TV.</li>
+<h2 id="Additional-Notes"><a href="#Additional-Notes" class="headerlink" title="Additional Notes"></a>Additional Notes</h2><ul>
+<li>As of this writing, the latest atvloadly version is v0.3.3. The latest tvOS is v26.1. They work together very well.</li>
+<li>Since I used a free Apple account to sideload Kodi to my Apple TV the certificate is only good for 7 days, which means Kodi will stop working after 7 days. However, by default, atvloadly will automatically refresh (re-sign) the Kodi app on Day 6. That way, you can keep using Kodi without manually sideloading Kodi again after 7 days.</li>
+<li>You can use a paid Apple developer account to sideload Kodi. In that case the installation is good for 365 days. However, since atvloadly automatically refresh the Kodi installation every 7 days, you don’t need to pay for a real Apple developer account to have a “permanent” working Kodi app on your Apple TV.</li>
 <li>For Kodi, I only use two add-ons with it: NextPVR and Jellyfin add-ons. NextPVR add-on allows me to watch over-the-air (OTA) TV programs. Jellyfin add-on allows me to watch ripped TV series and blueray movies. Both add-ons work flawlessly for me. I haven’t tried other add-ons in Kodi.</li>
 </ul>
 
