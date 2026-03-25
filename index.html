@@ -164,13 +164,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -187,6 +187,125 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2026/03/24/Unifi-Network-Setup/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="EternJ">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="EternJ's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | EternJ's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/03/24/Unifi-Network-Setup/" class="post-title-link" itemprop="url">Unifi Network Setup</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2026-03-24 23:38:02" itemprop="dateCreated datePublished" datetime="2026-03-24T23:38:02-07:00">2026-03-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-03-25 11:28:06" itemprop="dateModified" datetime="2026-03-25T11:28:06-07:00">2026-03-25</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>This is a simple note to myself regarding the network setup with Ubiquiti gears.</p>
+<h2 id="Network-Topology"><a href="#Network-Topology" class="headerlink" title="Network Topology"></a>Network Topology</h2><p>My home network topology is shown below:</p>
+<p><img src="/images/2026-03-24-Unifi-Network-Setup/EJ_Home_Network_Topo.png" alt="EJ_Home_Network_Topo"></p>
+<p>My internet is provided by AT&amp;T Uverse. The AT&amp;T gateway (BGW210 Gateway) is connected to the WAN port (Port 5) of a Unifi cloud gateway fiber (UCG-Fiber). Then a Unifi 24-port switch (USW-24-POE) is connected to the first LAN port (Port 1) of the UCG-Fiber.  Three other unifi equipment are connected to the USW-24-POE: a Unifi 8-port switch (USW-8-POE), a U6 Pro AP, and a U6 Lite AP.</p>
+<p>Wireless clients are connected to the two APs while wired ones are connected to the USW-24-POE and the USW-8-POE.</p>
+<h2 id="Put-BGW210-Gateway-in-Passthrough-Mode"><a href="#Put-BGW210-Gateway-in-Passthrough-Mode" class="headerlink" title="Put BGW210 Gateway in Passthrough Mode"></a>Put BGW210 Gateway in Passthrough Mode</h2><p>The first thing to do is to put AT&amp;T BGW210 gateway in the passthrough mode. Follow the steps below:</p>
+<ol>
+<li><p>Log into the AT&amp;T BGW210 gateway homepage and go to the “Firewall” tab on the top.</p>
+</li>
+<li><p>Click on the “IP Passthrough” sub-tab. On this page, select “Passthrough” for Allocation Mode. Select “DHCPS-fixed” for Passthrough Mode. Then input your Unifi gateway’s MAC address below. It should look like this:</p>
+<p><img src="/images/2026-03-24-Unifi-Network-Setup/ATT_BGW210_Passthrough.png" alt="ATT_BGW210_Passthrough"></p>
+<p>Don’t forget to click on the “Save” button to save the settings.</p>
+</li>
+<li><p>Disable Packet Filter, NAT Default Server, and all firewall rules.</p>
+</li>
+<li><p>Disable WiFi on the BGW210 gateway since we are going to setup a Unifi wireless network.</p>
+</li>
+</ol>
+<h2 id="Optimize-Unifi-WiFi-Network"><a href="#Optimize-Unifi-WiFi-Network" class="headerlink" title="Optimize Unifi WiFi Network"></a>Optimize Unifi WiFi Network</h2><p>Steps to optimize the Unifi WiFi network:</p>
+<ol>
+<li>Using <a target="_blank" rel="noopener" href="https://design.ui.com/">Unifi Design Center</a> (UDC) to find the optimum placement for your APs. You can upload your home floor plan to UDC and experiment with different locations and power settings of your APs. The software will show you the WiFi coverage of your home based on your AP locations and power settings.</li>
+<li>2.4GHz WiFi settings:<ul>
+<li>Use 20MHz channel width;</li>
+<li>Use different channels for different APs to avoid interference;</li>
+<li>Only select Channel 1, 6, or 11 for 2.4GHz.</li>
+</ul>
+</li>
+<li>5GHz WiFi settings:<ul>
+<li>Use 80MHz channel width;</li>
+<li>Use different channels for different APs to avoid interference.</li>
+</ul>
+</li>
+<li>Use WiFiMan to scan the RF environment to find optimum channels for your 2.4GHz and 5GHz network.</li>
+<li>Manually set the transmission power of the APs. The transmission power of 2.4GHz should be ~7dBm lower than that of 5GHz.</li>
+</ol>
+<h2 id="Set-STP-Priority"><a href="#Set-STP-Priority" class="headerlink" title="Set STP Priority"></a>Set STP Priority</h2><p>STP Priority needs to be set on the USW24 PoE and USW8 PoE. The STP priority can’t be the same for them. In my case, I set USW-24-POE to a STP priority of 8192 and USW-8-POE 16384.</p>
+<h2 id="Enable-IPS-IDS"><a href="#Enable-IPS-IDS" class="headerlink" title="Enable IPS&#x2F;IDS"></a>Enable IPS&#x2F;IDS</h2><p>Enable IPS&#x2F;IDS in Settings –&gt; CyberSecure. As of this writing, there is only an option for IPS. IDS is missing from the settings.</p>
+<h2 id="Reduce-BufferBloat"><a href="#Reduce-BufferBloat" class="headerlink" title="Reduce BufferBloat"></a>Reduce BufferBloat</h2><p>Steps to reduce bufferbloat:</p>
+<ol>
+<li>Go to <a target="_blank" rel="noopener" href="https://www.waveform.com/">Waveform</a> to test your network’s bufferbloat.</li>
+<li>If the bufferbloat is high (you’ll get a rating lower than B in the first step), you need to turn on SQM in the UCG Fiber.</li>
+<li>Go to Settings –&gt; Internet –&gt; Select AT&amp;T Internet and Check “Smart Queues”. Enter a download&#x2F;upload rate that is 90%~95% of your ISP speed. Go back to Step 1 and test again. Some tuning is needed to get satisfied results.</li>
+</ol>
+<h2 id="Enable-Flow-Control"><a href="#Enable-Flow-Control" class="headerlink" title="Enable Flow Control"></a>Enable Flow Control</h2><p>Enable flow control by going to Settings –&gt; Internet and check “Flow Control”.</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1071,92 +1190,6 @@
 <li>焦距: 546mm</li>
 </ul>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/28/Create-Your-Own-Blog-03/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="EternJ">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="EternJ's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | EternJ's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/03/28/Create-Your-Own-Blog-03/" class="post-title-link" itemprop="url">创建自己的独立博客（三）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2020-03-28 14:06:14" itemprop="dateCreated datePublished" datetime="2020-03-28T14:06:14-07:00">2020-03-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2020-03-29 19:03:27" itemprop="dateModified" datetime="2020-03-29T19:03:27-07:00">2020-03-29</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>通过前面两篇文章的介绍，我们可以用Hexo在创建了一个本地博客并且撰写一些精彩的博文。但是这些博文只存在于自己的电脑上，只能从本机上才能看到。如何才能把自己的博客发布到互联网上与人分享呢？我们可以把Hexo生成的静态网页托管到GitHub上，并通过GitHub来分享自己的博客。</p>
-<h2 id="注册GitHub帐号"><a href="#注册GitHub帐号" class="headerlink" title="注册GitHub帐号"></a>注册GitHub帐号</h2><ol>
-<li><p>打开网页浏览器，在地址栏里输入 <a target="_blank" rel="noopener" href="https://github.com/new">https://github.com/new</a> ，然后点击“Create an account”：</p>
-<p> <img src="/images/2020-03-28-Create-Your-Own-Blog-03/21CreateGithubAccount_A.png" alt="21CreateGithubAccount_A"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/03/28/Create-Your-Own-Blog-03/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
